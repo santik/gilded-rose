@@ -11,7 +11,7 @@ public class BackstagePassHandler implements ItemHandler<BackstagePass> {
         //it is interesting that in original code first quality recalculated and then sellIn
         //so keeping that order here
         final int newQuality = recalculateQuality(item.sellIn, item.quality);
-        return new BackstagePass(item.sellIn - 1, newQuality);
+        return new BackstagePass(item.name, item.sellIn - 1, newQuality);
     }
 
     private int recalculateQuality(int sellIn, int quality) {

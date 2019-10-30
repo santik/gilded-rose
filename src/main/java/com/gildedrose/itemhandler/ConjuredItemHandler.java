@@ -12,6 +12,7 @@ public class ConjuredItemHandler implements ItemHandler<ConjuredItem> {
         return new ConjuredItem(item.name, newSellIn, recalculateQuality(newSellIn, item.quality));
     }
 
+    //should do twice as standard
     private int recalculateQuality(int sellIn, int quality) {
         int firstRecalculation = standardItemHandler.recalculateQuality(sellIn, quality);
         return standardItemHandler.recalculateQuality(sellIn, firstRecalculation);

@@ -14,7 +14,7 @@ public class StandardItemHandler implements ItemHandler<Item> {
         return new Item(item.name, newSellIn, recalculateQuality(newSellIn, item.quality));
     }
 
-    public int recalculateQuality(int sellIn, int quality) {
+    int recalculateQuality(int sellIn, int quality) {
         final int newQuality = sellIn > 0
                 ? quality - QUALITY_AMOUNT_TO_DECREASE
                 : quality - QUALITY_AMOUNT_TO_DECREASE * 2;

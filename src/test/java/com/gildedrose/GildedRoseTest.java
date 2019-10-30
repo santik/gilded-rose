@@ -6,7 +6,7 @@ import static org.junit.Assert.assertEquals;
 import com.gildedrose.items.AgedBrie;
 import com.gildedrose.items.BackstagePass;
 import com.gildedrose.items.ConjuredItem;
-import com.gildedrose.items.Sulfuras;
+import com.gildedrose.items.LegendaryItem;
 import com.github.javafaker.Faker;
 import org.junit.Test;
 
@@ -14,16 +14,8 @@ public class GildedRoseTest {
 
     private Faker faker = new Faker();
 
-    private GildedRose getApp(Item[] items) {
-        return new GildedRoseClean(items);
-    }
-
-    @Test
-    public void foo() {
-        Item[] items = new Item[]{new Item("foo", 0, 0)};
-        GildedRose app = getApp(items);
-        app.updateQuality();
-        assertEquals("foo", app.items[0].name);
+    private GildedRoseUpdater getApp(Item[] items) {
+        return new GildedRose(items);
     }
 
     @Test
@@ -33,7 +25,7 @@ public class GildedRoseTest {
         int originalSellIn = faker.number().numberBetween(1, 100);
         int originalQuality = faker.number().numberBetween(1, 50);
         Item[] items = new Item[]{new Item(standardName, originalSellIn, originalQuality)};
-        GildedRose app = getApp(items);
+        GildedRoseUpdater app = getApp(items);
 
         //act
         app.updateQuality();
@@ -52,7 +44,7 @@ public class GildedRoseTest {
         int originalSellIn = -1;
         int originalQuality = faker.number().numberBetween(1, 50);
         Item[] items = new Item[]{new Item(standardName, originalSellIn, originalQuality)};
-        GildedRose app = getApp(items);
+        GildedRoseUpdater app = getApp(items);
 
         //act
         app.updateQuality();
@@ -71,7 +63,7 @@ public class GildedRoseTest {
         int originalSellIn = -2;
         int originalQuality = 0;
         Item[] items = new Item[]{new Item(standardName, originalSellIn, originalQuality)};
-        GildedRose app = getApp(items);
+        GildedRoseUpdater app = getApp(items);
 
         //act
         app.updateQuality();
@@ -89,7 +81,7 @@ public class GildedRoseTest {
         int originalSellIn = faker.number().numberBetween(1, 100);
         int originalQuality = faker.number().numberBetween(1, 30);
         Item[] items = new Item[]{new AgedBrie(originalSellIn, originalQuality)};
-        GildedRose app = getApp(items);
+        GildedRoseUpdater app = getApp(items);
 
         //act
         app.updateQuality();
@@ -107,7 +99,7 @@ public class GildedRoseTest {
         int originalSellIn = -1;
         int originalQuality = faker.number().numberBetween(1, 30);
         Item[] items = new Item[]{new AgedBrie(originalSellIn, originalQuality)};
-        GildedRose app = getApp(items);
+        GildedRoseUpdater app = getApp(items);
 
         //act
         app.updateQuality();
@@ -125,7 +117,7 @@ public class GildedRoseTest {
         int originalSellIn = faker.number().numberBetween(1, 100);
         int originalQuality = 50;
         Item[] items = new Item[]{new AgedBrie(originalSellIn, originalQuality)};
-        GildedRose app = getApp(items);
+        GildedRoseUpdater app = getApp(items);
 
         //act
         app.updateQuality();
@@ -140,17 +132,18 @@ public class GildedRoseTest {
     @Test
     public void withSulfuras_shouldNotChangeQualityAndSellIn() {
         //arrange
+        String legendaryName = "Sulfuras, Hand of Ragnaros";
         int originalSellIn = faker.number().numberBetween(1, 100);
         int originalQuality = 80;
-        Item[] items = new Item[]{new Sulfuras(originalSellIn, originalQuality)};
-        GildedRose app = getApp(items);
+        Item[] items = new Item[]{new LegendaryItem(legendaryName, originalSellIn, originalQuality)};
+        GildedRoseUpdater app = getApp(items);
 
         //act
         app.updateQuality();
         Item sulfuras = app.items[0];
 
         //assert
-        assertEquals(Sulfuras.NAME, sulfuras.name);
+        assertEquals(legendaryName, sulfuras.name);
         assertEquals(originalSellIn, sulfuras.sellIn);
         assertEquals(originalQuality, sulfuras.quality);
     }
@@ -158,17 +151,18 @@ public class GildedRoseTest {
     @Test
     public void withBackstagePassAndSellInnAbove10_shouldIncreaseQuality() {
         //arrange
+        String backstagePassName = "Backstage passes to a TAFKAL80ETC concert";
         int originalSellIn = faker.number().numberBetween(11, 100);
         int originalQuality = faker.number().numberBetween(1, 30);
-        Item[] items = new Item[]{new BackstagePass(originalSellIn, originalQuality)};
-        GildedRose app = getApp(items);
+        Item[] items = new Item[]{new BackstagePass(backstagePassName, originalSellIn, originalQuality)};
+        GildedRoseUpdater app = getApp(items);
 
         //act
         app.updateQuality();
         Item backstagePass = app.items[0];
 
         //assert
-        assertEquals(BackstagePass.NAME, backstagePass.name);
+        assertEquals(backstagePassName, backstagePass.name);
         assertEquals(originalSellIn - 1, backstagePass.sellIn);
         assertEquals(originalQuality + 1, backstagePass.quality);
     }
@@ -176,18 +170,19 @@ public class GildedRoseTest {
     @Test
     public void withBackstagePassAndSellInnBelow10_shouldIncreaseQualityBy2() {
         //arrange
+        String backstagePassName = "Backstage passes to a TAFKAL80ETC concert";
         int originalSellIn = faker.number().numberBetween(6, 9);
         int originalQuality = faker.number().numberBetween(1, 30);
         System.out.println(originalSellIn + " " + originalQuality);
-        Item[] items = new Item[]{new BackstagePass(originalSellIn, originalQuality)};
-        GildedRose app = getApp(items);
+        Item[] items = new Item[]{new BackstagePass(backstagePassName, originalSellIn, originalQuality)};
+        GildedRoseUpdater app = getApp(items);
 
         //act
         app.updateQuality();
         Item backstagePass = app.items[0];
 
         //assert
-        assertEquals(BackstagePass.NAME, backstagePass.name);
+        assertEquals(backstagePassName, backstagePass.name);
         assertEquals(originalSellIn - 1, backstagePass.sellIn);
         assertEquals(originalQuality + 2, backstagePass.quality);
     }
@@ -195,17 +190,18 @@ public class GildedRoseTest {
     @Test
     public void withBackstagePassAndSellInnBelow5_shouldIncreaseQualityBy3() {
         //arrange
+        String backstagePassName = "Backstage passes to a TAFKAL80ETC concert";
         int originalSellIn = faker.number().numberBetween(1, 4);
         int originalQuality = faker.number().numberBetween(1, 30);
-        Item[] items = new Item[]{new BackstagePass(originalSellIn, originalQuality)};
-        GildedRose app = getApp(items);
+        Item[] items = new Item[]{new BackstagePass(backstagePassName, originalSellIn, originalQuality)};
+        GildedRoseUpdater app = getApp(items);
 
         //act
         app.updateQuality();
         Item backstagePass = app.items[0];
 
         //assert
-        assertEquals(BackstagePass.NAME, backstagePass.name);
+        assertEquals(backstagePassName, backstagePass.name);
         assertEquals(originalSellIn - 1, backstagePass.sellIn);
         assertEquals(originalQuality + 3, backstagePass.quality);
     }
@@ -213,17 +209,18 @@ public class GildedRoseTest {
     @Test
     public void withBackstagePassAndSellingBelow0_shouldKeepQuality0() {
         //arrange
+        String backstagePassName = "Backstage passes to a TAFKAL80ETC concert";
         int originalSellIn = 0;
         int originalQuality = faker.number().numberBetween(1, 30);
-        Item[] items = new Item[]{new BackstagePass(originalSellIn, originalQuality)};
-        GildedRose app = getApp(items);
+        Item[] items = new Item[]{new BackstagePass(backstagePassName, originalSellIn, originalQuality)};
+        GildedRoseUpdater app = getApp(items);
 
         //act
         app.updateQuality();
         Item backstagePass = app.items[0];
 
         //assert
-        assertEquals(backstagePass.name, backstagePass.name);
+        assertEquals(backstagePassName, backstagePass.name);
         assertEquals(originalSellIn - 1, backstagePass.sellIn);
         assertEquals(0, backstagePass.quality);
     }
@@ -234,8 +231,8 @@ public class GildedRoseTest {
         String conjuredName = faker.commerce().productName();
         int originalSellIn = faker.number().numberBetween(1, 100);
         int originalQuality = faker.number().numberBetween(1, 50);
-        Item[] items = new Item[]{new ConjuredItem(conjuredName,originalSellIn, originalQuality)};
-        GildedRose app = getApp(items);
+        Item[] items = new Item[]{new ConjuredItem(conjuredName, originalSellIn, originalQuality)};
+        GildedRoseUpdater app = getApp(items);
 
         //act
         app.updateQuality();
@@ -254,7 +251,7 @@ public class GildedRoseTest {
         int originalSellIn = -1;
         int originalQuality = faker.number().numberBetween(1, 50);
         Item[] items = new Item[]{new ConjuredItem(conjuredName, originalSellIn, originalQuality)};
-        GildedRose app = getApp(items);
+        GildedRoseUpdater app = getApp(items);
 
         //act
         app.updateQuality();
