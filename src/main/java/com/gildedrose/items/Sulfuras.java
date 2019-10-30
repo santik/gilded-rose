@@ -1,8 +1,6 @@
 package com.gildedrose.items;
 
-import com.gildedrose.Item;
-
-public class Sulfuras extends Item implements LegendaryItem {
+public class Sulfuras extends LegendaryItem {
 
     public static final String NAME = "Sulfuras, Hand of Ragnaros";
 

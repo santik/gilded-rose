@@ -1,4 +1,9 @@
 package com.gildedrose.items;
 
-public interface LegendaryItem {
+import com.gildedrose.Item;
+
+public abstract class LegendaryItem extends Item {
+    public LegendaryItem(String name, int sellIn, int quality) {
+        super(name, sellIn, quality);
+    }
 }

@@ -13,7 +13,7 @@ public class GildedRoseTest {
     private Faker faker = new Faker();
 
     private GildedRose getApp(Item[] items) {
-        return new GildedRose(items);
+        return new GildedRoseClean(items);
     }
 
     @Test
