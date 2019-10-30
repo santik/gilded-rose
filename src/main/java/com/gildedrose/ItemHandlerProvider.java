@@ -2,10 +2,12 @@ package com.gildedrose;
 
 import com.gildedrose.itemhandler.AgedBrieHandler;
 import com.gildedrose.itemhandler.BackstagePassHandler;
+import com.gildedrose.itemhandler.ConjuredItemHandler;
 import com.gildedrose.itemhandler.LegendaryItemHandler;
 import com.gildedrose.itemhandler.StandardItemHandler;
 import com.gildedrose.items.AgedBrie;
 import com.gildedrose.items.BackstagePass;
+import com.gildedrose.items.ConjuredItem;
 import com.gildedrose.items.LegendaryItem;
 
 public class ItemHandlerProvider<T extends Item> {
@@ -14,6 +16,7 @@ public class ItemHandlerProvider<T extends Item> {
     private final BackstagePassHandler backstagePassHandler = new BackstagePassHandler();
     private final LegendaryItemHandler legendaryItemHandler = new LegendaryItemHandler();
     private final StandardItemHandler standardItemHandler = new StandardItemHandler();
+    private final ConjuredItemHandler conjuredItemHandler = new ConjuredItemHandler();
 
     //it could be something smarter, but we have low
     //number of cases so simple "if" works good
@@ -28,6 +31,10 @@ public class ItemHandlerProvider<T extends Item> {
 
         if (item instanceof LegendaryItem) {
             return legendaryItemHandler;
+        }
+
+        if (item instanceof ConjuredItem) {
+            return conjuredItemHandler;
         }
 
         return standardItemHandler;

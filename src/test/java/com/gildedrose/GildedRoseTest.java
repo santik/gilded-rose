@@ -4,6 +4,7 @@ import static org.junit.Assert.assertEquals;
 
 import com.gildedrose.items.AgedBrie;
 import com.gildedrose.items.BackstagePass;
+import com.gildedrose.items.ManaCake;
 import com.gildedrose.items.Sulfuras;
 import com.github.javafaker.Faker;
 import org.junit.Test;
@@ -224,5 +225,41 @@ public class GildedRoseTest {
         assertEquals(backstagePass.name, backstagePass.name);
         assertEquals(originalSellIn - 1, backstagePass.sellIn);
         assertEquals(0, backstagePass.quality);
+    }
+
+    @Test
+    public void withConjured_shouldDecreaseSelInnAndQuality() {
+        //arrange
+        int originalSellIn = faker.number().numberBetween(1, 100);
+        int originalQuality = faker.number().numberBetween(1, 50);
+        Item[] items = new Item[]{new ManaCake(originalSellIn, originalQuality)};
+        GildedRose app = getApp(items);
+
+        //act
+        app.updateQuality();
+        Item standardItem = app.items[0];
+
+        //assert
+        assertEquals(ManaCake.NAME, standardItem.name);
+        assertEquals(originalSellIn - 1, standardItem.sellIn);
+        assertEquals(originalQuality - 2, standardItem.quality);
+    }
+
+    @Test
+    public void withConjuredItem_ShouldDecreaseQualityByTwoWhenSellInPassed() {
+        //arrange
+        int originalSellIn = -1;
+        int originalQuality = faker.number().numberBetween(1, 50);
+        Item[] items = new Item[]{new ManaCake(originalSellIn, originalQuality)};
+        GildedRose app = getApp(items);
+
+        //act
+        app.updateQuality();
+        Item standardItem = app.items[0];
+
+        //assert
+        assertEquals(ManaCake.NAME, standardItem.name);
+        assertEquals(originalSellIn - 1, standardItem.sellIn);
+        assertEquals(originalQuality - 4, standardItem.quality);
     }
 }

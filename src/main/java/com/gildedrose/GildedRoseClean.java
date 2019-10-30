@@ -4,8 +4,6 @@ import java.util.Arrays;
 
 class GildedRoseClean extends GildedRose {
 
-//    Item[] items;
-
     private ItemHandlerProvider itemHandlerProvider = new ItemHandlerProvider();
 
     public GildedRoseClean(Item[] items) {
