@@ -1,8 +1,6 @@
 package com.gildedrose.itemhandler;
 
-import com.gildedrose.ItemHandler;
 import com.gildedrose.items.ConjuredItem;
-import com.gildedrose.items.ManaCake;
 
 public class ConjuredItemHandler implements ItemHandler<ConjuredItem> {
 
@@ -11,7 +9,7 @@ public class ConjuredItemHandler implements ItemHandler<ConjuredItem> {
     @Override
     public ConjuredItem handle(ConjuredItem item) {
         final int newSellIn = item.sellIn - 1;
-        return new ManaCake(newSellIn, recalculateQuality(newSellIn, item.quality));
+        return new ConjuredItem(item.name, newSellIn, recalculateQuality(newSellIn, item.quality));
     }
 
     private int recalculateQuality(int sellIn, int quality) {

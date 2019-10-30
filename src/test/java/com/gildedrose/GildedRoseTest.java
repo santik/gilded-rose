@@ -4,7 +4,7 @@ import static org.junit.Assert.assertEquals;
 
 import com.gildedrose.items.AgedBrie;
 import com.gildedrose.items.BackstagePass;
-import com.gildedrose.items.ManaCake;
+import com.gildedrose.items.ConjuredItem;
 import com.gildedrose.items.Sulfuras;
 import com.github.javafaker.Faker;
 import org.junit.Test;
@@ -230,36 +230,38 @@ public class GildedRoseTest {
     @Test
     public void withConjured_shouldDecreaseSelInnAndQuality() {
         //arrange
+        String conjuredName = faker.commerce().productName();
         int originalSellIn = faker.number().numberBetween(1, 100);
         int originalQuality = faker.number().numberBetween(1, 50);
-        Item[] items = new Item[]{new ManaCake(originalSellIn, originalQuality)};
+        Item[] items = new Item[]{new ConjuredItem(conjuredName,originalSellIn, originalQuality)};
         GildedRose app = getApp(items);
 
         //act
         app.updateQuality();
-        Item standardItem = app.items[0];
+        Item conjuredItem = app.items[0];
 
         //assert
-        assertEquals(ManaCake.NAME, standardItem.name);
-        assertEquals(originalSellIn - 1, standardItem.sellIn);
-        assertEquals(originalQuality - 2, standardItem.quality);
+        assertEquals(conjuredName, conjuredItem.name);
+        assertEquals(originalSellIn - 1, conjuredItem.sellIn);
+        assertEquals(originalQuality - 2, conjuredItem.quality);
     }
 
     @Test
     public void withConjuredItem_ShouldDecreaseQualityByTwoWhenSellInPassed() {
         //arrange
+        String conjuredName = faker.commerce().productName();
         int originalSellIn = -1;
         int originalQuality = faker.number().numberBetween(1, 50);
-        Item[] items = new Item[]{new ManaCake(originalSellIn, originalQuality)};
+        Item[] items = new Item[]{new ConjuredItem(conjuredName, originalSellIn, originalQuality)};
         GildedRose app = getApp(items);
 
         //act
         app.updateQuality();
-        Item standardItem = app.items[0];
+        Item conjuredItem = app.items[0];
 
         //assert
-        assertEquals(ManaCake.NAME, standardItem.name);
-        assertEquals(originalSellIn - 1, standardItem.sellIn);
-        assertEquals(originalQuality - 4, standardItem.quality);
+        assertEquals(conjuredName, conjuredItem.name);
+        assertEquals(originalSellIn - 1, conjuredItem.sellIn);
+        assertEquals(originalQuality - 4, conjuredItem.quality);
     }
 }

@@ -1,10 +1,6 @@
-package com.gildedrose;
+package com.gildedrose.itemhandler;
 
-import com.gildedrose.itemhandler.AgedBrieHandler;
-import com.gildedrose.itemhandler.BackstagePassHandler;
-import com.gildedrose.itemhandler.ConjuredItemHandler;
-import com.gildedrose.itemhandler.LegendaryItemHandler;
-import com.gildedrose.itemhandler.StandardItemHandler;
+import com.gildedrose.Item;
 import com.gildedrose.items.AgedBrie;
 import com.gildedrose.items.BackstagePass;
 import com.gildedrose.items.ConjuredItem;

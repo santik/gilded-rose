@@ -1,5 +1,7 @@
 package com.gildedrose;
 
+import com.gildedrose.itemhandler.ItemHandlerProvider;
+
 import java.util.Arrays;
 
 class GildedRoseClean extends GildedRose {
