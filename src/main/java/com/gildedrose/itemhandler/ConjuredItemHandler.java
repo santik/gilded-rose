@@ -4,7 +4,7 @@ import com.gildedrose.items.ConjuredItem;
 
 public class ConjuredItemHandler implements ItemHandler<ConjuredItem> {
 
-    private static final int MIN_QUALITY = 0;
+    private StandardItemHandler standardItemHandler = new StandardItemHandler();
 
     @Override
     public ConjuredItem handle(ConjuredItem item) {
@@ -13,9 +13,7 @@ public class ConjuredItemHandler implements ItemHandler<ConjuredItem> {
     }
 
     private int recalculateQuality(int sellIn, int quality) {
-        final int newQuality = sellIn > 0
-                ? quality - 2
-                : quality - 4;
-        return Math.max(newQuality, MIN_QUALITY);
+        int firstRecalculation = standardItemHandler.recalculateQuality(sellIn, quality);
+        return standardItemHandler.recalculateQuality(sellIn, firstRecalculation);
     }
 }

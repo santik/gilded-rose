@@ -9,6 +9,7 @@ public class BackstagePassHandler implements ItemHandler<BackstagePass> {
     @Override
     public BackstagePass handle(BackstagePass item) {
         //it is interesting that in original code first quality recalculated and then sellIn
+        //so keeping that order here
         final int newQuality = recalculateQuality(item.sellIn, item.quality);
         return new BackstagePass(item.sellIn - 1, newQuality);
     }

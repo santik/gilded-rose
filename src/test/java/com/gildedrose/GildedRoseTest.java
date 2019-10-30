@@ -1,5 +1,6 @@
 package com.gildedrose;
 
+import static com.gildedrose.itemhandler.StandardItemHandler.QUALITY_AMOUNT_TO_DECREASE;
 import static org.junit.Assert.assertEquals;
 
 import com.gildedrose.items.AgedBrie;
@@ -41,7 +42,7 @@ public class GildedRoseTest {
         //assert
         assertEquals(standardName, standardItem.name);
         assertEquals(originalSellIn - 1, standardItem.sellIn);
-        assertEquals(originalQuality - 1, standardItem.quality);
+        assertEquals(originalQuality - QUALITY_AMOUNT_TO_DECREASE, standardItem.quality);
     }
 
     @Test
@@ -60,7 +61,7 @@ public class GildedRoseTest {
         //assert
         assertEquals(standardName, standardItem.name);
         assertEquals(originalSellIn - 1, standardItem.sellIn);
-        assertEquals(originalQuality - 2, standardItem.quality);
+        assertEquals(originalQuality - QUALITY_AMOUNT_TO_DECREASE * 2, standardItem.quality);
     }
 
     @Test
@@ -243,7 +244,7 @@ public class GildedRoseTest {
         //assert
         assertEquals(conjuredName, conjuredItem.name);
         assertEquals(originalSellIn - 1, conjuredItem.sellIn);
-        assertEquals(originalQuality - 2, conjuredItem.quality);
+        assertEquals(originalQuality - QUALITY_AMOUNT_TO_DECREASE * 2, conjuredItem.quality);
     }
 
     @Test
@@ -262,6 +263,6 @@ public class GildedRoseTest {
         //assert
         assertEquals(conjuredName, conjuredItem.name);
         assertEquals(originalSellIn - 1, conjuredItem.sellIn);
-        assertEquals(originalQuality - 4, conjuredItem.quality);
+        assertEquals(originalQuality - QUALITY_AMOUNT_TO_DECREASE * 4, conjuredItem.quality);
     }
 }
