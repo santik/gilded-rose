@@ -131,7 +131,7 @@ public class GildedRoseTest {
     @Test
     public void withSulfuras_shouldNotChangeQualityAndSellIn() {
         //arrange
-        String sulfurasName = "Sulfuras " + faker.commerce().productName();
+        String sulfurasName = "Sulfuras, Hand of Ragnaros";
         int originalSellIn = faker.number().numberBetween(1, 100);
         int originalQuality = 80;
         Item[] items = new Item[]{new Item(sulfurasName, originalSellIn, originalQuality)};
@@ -150,7 +150,7 @@ public class GildedRoseTest {
     @Test
     public void withBackstagePassAndSellInnAbove10_shouldIncreaseQuality() {
         //arrange
-        String backstagePassName = "Backstage passes " + faker.commerce().productName();
+        String backstagePassName = "Backstage passes to a TAFKAL80ETC concert";
         int originalSellIn = faker.number().numberBetween(11, 100);
         int originalQuality = faker.number().numberBetween(1, 30);
         Item[] items = new Item[]{new Item(backstagePassName, originalSellIn, originalQuality)};
@@ -169,7 +169,7 @@ public class GildedRoseTest {
     @Test
     public void withBackstagePassAndSellInnBelow10_shouldIncreaseQualityBy2() {
         //arrange
-        String backstagePassName = "Backstage passes " + faker.commerce().productName();
+        String backstagePassName = "Backstage passes to a TAFKAL80ETC concert";
         int originalSellIn = faker.number().numberBetween(6, 9);
         int originalQuality = faker.number().numberBetween(1, 30);
         System.out.println(originalSellIn + " " + originalQuality);
@@ -189,7 +189,7 @@ public class GildedRoseTest {
     @Test
     public void withBackstagePassAndSellInnBelow5_shouldIncreaseQualityBy3() {
         //arrange
-        String backstagePassName = "Backstage passes " + faker.commerce().productName();
+        String backstagePassName = "Backstage passes to a TAFKAL80ETC concert";
         int originalSellIn = faker.number().numberBetween(1, 4);
         int originalQuality = faker.number().numberBetween(1, 30);
         Item[] items = new Item[]{new Item(backstagePassName, originalSellIn, originalQuality)};
@@ -208,7 +208,7 @@ public class GildedRoseTest {
     @Test
     public void withBackstagePassAndSellingBelow0_shouldKeepQuality0() {
         //arrange
-        String backstagePassName = "Backstage passes " + faker.commerce().productName();
+        String backstagePassName = "Backstage passes to a TAFKAL80ETC concert";
         int originalSellIn = 0;
         int originalQuality = faker.number().numberBetween(1, 30);
         Item[] items = new Item[]{new Item(backstagePassName, originalSellIn, originalQuality)};

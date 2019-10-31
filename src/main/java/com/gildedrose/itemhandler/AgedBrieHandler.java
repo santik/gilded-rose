@@ -1,7 +1,7 @@
 package com.gildedrose.itemhandler;
 
 import com.gildedrose.Item;
-import com.gildedrose.items.AgedBrie;
+import com.gildedrose.typeditems.AgedBrie;
 
 public class AgedBrieHandler implements TypedItemHandler<AgedBrie> {
 

@@ -1,16 +1,18 @@
 
 # Gilded Rose refactoring project  
-  
-Project contains 2 branches: master and [mutable-items](https://github.com/santik/gilded-rose/tree/mutable-items).  
-   
-Refactoring with immutability and strict typing and generic interfaces is in the master branch
-Then realised that in [`TexttestFixture`](https://github.com/santik/gilded-rose/blob/master/src/test/java/com/gildedrose/TexttestFixture.java) initial objects are printed as a result after updating.  
-So probably that objects supposed be mutated and used outside of the current functionality.  
-If this is the case the task becomes a little bit easier with this limitation but code is not that "fancy" and robust.  
-  
-I decided to keep both version:  
-* Master branch is for bigger refactoring.  
-* [Mutable-items](https://github.com/santik/gilded-rose/tree/mutable-items) branch is for limited refactoring.  
 
-In both branches initial `GildedRose` class was renamed to `GildedRoseDeprecated` with little changes to be able to run tests against old and refactored versions.
+The biggest challenge of this assignment was the requirement not to change `Items`.
+It limits possibilities for decoupling code, but requirements are requirements.
+_I personally think that items should not be muttable. Aged cheese today is not the same as tomorrow._  
+
+The approach is the following:
+For each `Item` in the list application performs the squence of operations:
+* Decorate `Item` into `TypedItem` object based on its name with the `TypedItemFactory`
+    * _For example item with the name "Aged Brie" should be `AgedBrie`_
+* Based on type of `TypedItem` detect suitable handler with `TypedItemHandlerProvider`
+    * _For example for `BackstagePass` it should be `BackstagePassHandler`_
+* Handler keeps knowledge how to update properties of wrapped `Item`     
+  
+Initial `GildedRose` class was renamed to `GildedRoseDeprecated` with little changes to be able to run tests against old and refactored versions.
+
  

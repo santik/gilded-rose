@@ -1,13 +1,13 @@
 package com.gildedrose.itemhandler;
 
-import com.gildedrose.items.AgedBrie;
-import com.gildedrose.items.BackstagePass;
-import com.gildedrose.items.ConjuredItem;
-import com.gildedrose.items.TypedItem;
-import com.gildedrose.items.LegendaryItem;
-import com.gildedrose.items.StandardItem;
+import com.gildedrose.typeditems.AgedBrie;
+import com.gildedrose.typeditems.BackstagePass;
+import com.gildedrose.typeditems.ConjuredItem;
+import com.gildedrose.typeditems.TypedItem;
+import com.gildedrose.typeditems.LegendaryItem;
+import com.gildedrose.typeditems.StandardItem;
 
-public class ItemHandlerProvider<T extends TypedItem> {
+public class TypedItemHandlerProvider<T extends TypedItem> {
 
     private final AgedBrieHandler agedBrieHandler = new AgedBrieHandler();
     private final BackstagePassHandler backstagePassHandler = new BackstagePassHandler();

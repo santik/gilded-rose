@@ -1,4 +1,4 @@
-package com.gildedrose.items;
+package com.gildedrose.typeditems;
 
 import com.gildedrose.Item;
 
@@ -9,19 +9,19 @@ public class TypedItemFactory {
     private static final String SULFURAS_PREFIX = "Sulfuras";
     private static final String CONJURED_PREFIX = "Conjured";
 
-    public static boolean isAgedBrie(Item item) {
+    private static boolean isAgedBrie(Item item) {
         return item.name.startsWith(AGED_BRIE);
     }
 
-    public static boolean isBackstagePasses(Item item) {
+    private static boolean isBackstagePasses(Item item) {
         return item.name.startsWith(BACKSTAGE_PASSES_PREFIX);
     }
 
-    public static boolean isSulfuras(Item item) {
+    private static boolean isSulfuras(Item item) {
         return item.name.startsWith(SULFURAS_PREFIX);
     }
 
-    public static boolean isConjured(Item item) {
+    private static boolean isConjured(Item item) {
         return item.name.startsWith(CONJURED_PREFIX);
     }
 

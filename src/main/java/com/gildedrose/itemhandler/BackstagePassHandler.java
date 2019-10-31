@@ -1,7 +1,7 @@
 package com.gildedrose.itemhandler;
 
 import com.gildedrose.Item;
-import com.gildedrose.items.BackstagePass;
+import com.gildedrose.typeditems.BackstagePass;
 
 public class BackstagePassHandler implements TypedItemHandler<BackstagePass> {
 
@@ -20,9 +20,9 @@ public class BackstagePassHandler implements TypedItemHandler<BackstagePass> {
         final int newQuality;
         if (sellIn <= 0) {
             newQuality = 0;
-        } else if (sellIn <= 5) {
+        } else if (sellIn < 6) {
             newQuality = quality + 3;
-        } else if (sellIn <= 10) {
+        } else if (sellIn < 11) {
             newQuality = quality + 2;
         } else {
             newQuality = quality + 1;

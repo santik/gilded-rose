@@ -1,7 +1,7 @@
 package com.gildedrose.itemhandler;
 
 import com.gildedrose.Item;
-import com.gildedrose.items.ConjuredItem;
+import com.gildedrose.typeditems.ConjuredItem;
 
 public class ConjuredItemHandler implements TypedItemHandler<ConjuredItem> {
 

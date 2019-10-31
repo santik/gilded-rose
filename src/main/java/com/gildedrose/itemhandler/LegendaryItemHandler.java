@@ -1,6 +1,6 @@
 package com.gildedrose.itemhandler;
 
-import com.gildedrose.items.LegendaryItem;
+import com.gildedrose.typeditems.LegendaryItem;
 
 public class LegendaryItemHandler implements TypedItemHandler<LegendaryItem> {
 

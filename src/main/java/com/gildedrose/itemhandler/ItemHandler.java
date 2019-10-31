@@ -1,15 +1,16 @@
 package com.gildedrose.itemhandler;
 
 import com.gildedrose.Item;
-import com.gildedrose.items.TypedItem;
-import com.gildedrose.items.TypedItemFactory;
+import com.gildedrose.typeditems.TypedItem;
+import com.gildedrose.typeditems.TypedItemFactory;
 
 public class ItemHandler {
 
-    private ItemHandlerProvider itemHandlerProvider = new ItemHandlerProvider();
+    private TypedItemHandlerProvider<TypedItem> provider = new TypedItemHandlerProvider<>();
 
     public void handle(Item item) {
-        TypedItem decoratedItem = TypedItemFactory.getTypedItem(item);
-        itemHandlerProvider.provide(decoratedItem).handle(decoratedItem);
+        TypedItem typedItem = TypedItemFactory.getTypedItem(item);
+        TypedItemHandler<TypedItem> typedItemHandler = provider.provide(typedItem);
+        typedItemHandler.handle(typedItem);
     }
 }

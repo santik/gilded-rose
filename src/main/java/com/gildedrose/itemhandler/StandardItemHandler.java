@@ -1,7 +1,7 @@
 package com.gildedrose.itemhandler;
 
 import com.gildedrose.Item;
-import com.gildedrose.items.StandardItem;
+import com.gildedrose.typeditems.StandardItem;
 
 public class StandardItemHandler implements TypedItemHandler<StandardItem> {
 
