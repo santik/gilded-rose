@@ -1,12 +1,10 @@
 package com.gildedrose;
 
-import com.gildedrose.itemhandler.ItemHandlerProvider;
-
-import java.util.Arrays;
+import com.gildedrose.itemhandler.ItemHandler;
 
 class GildedRose extends GildedRoseUpdater {
 
-    private ItemHandlerProvider itemHandlerProvider = new ItemHandlerProvider();
+    private ItemHandler itemHandler = new ItemHandler();
 
     public GildedRose(Item[] items) {
         super(items);
@@ -14,10 +12,12 @@ class GildedRose extends GildedRoseUpdater {
 
     @Override
     public void updateQuality() {
-        items = Arrays.stream(items).map(this::updateItem).toArray(Item[]::new);
+        for (Item item: items) {
+            updateItem(item);
+        }
     }
 
-    private Item updateItem(Item item) {
-        return itemHandlerProvider.provide(item).handle(item);
+    private void updateItem(Item item) {
+        itemHandler.handle(item);
     }
 }

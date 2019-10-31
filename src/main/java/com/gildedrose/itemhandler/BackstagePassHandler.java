@@ -1,17 +1,19 @@
 package com.gildedrose.itemhandler;
 
+import com.gildedrose.Item;
 import com.gildedrose.items.BackstagePass;
 
-public class BackstagePassHandler implements ItemHandler<BackstagePass> {
+public class BackstagePassHandler implements TypedItemHandler<BackstagePass> {
 
     private static final int MAX_QUALITY = 50;
 
     @Override
-    public BackstagePass handle(BackstagePass item) {
+    public void handle(BackstagePass backstagePass) {
+        Item item = backstagePass.getItem();
         //it is interesting that in original code first quality recalculated and then sellIn
         //so keeping that order here
-        final int newQuality = recalculateQuality(item.sellIn, item.quality);
-        return new BackstagePass(item.name, item.sellIn - 1, newQuality);
+        item.quality = recalculateQuality(item.sellIn, item.quality);
+        item.sellIn = item.sellIn - 1;
     }
 
     private int recalculateQuality(int sellIn, int quality) {

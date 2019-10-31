@@ -1,15 +1,17 @@
 package com.gildedrose.itemhandler;
 
+import com.gildedrose.Item;
 import com.gildedrose.items.ConjuredItem;
 
-public class ConjuredItemHandler implements ItemHandler<ConjuredItem> {
+public class ConjuredItemHandler implements TypedItemHandler<ConjuredItem> {
 
     private StandardItemHandler standardItemHandler = new StandardItemHandler();
 
     @Override
-    public ConjuredItem handle(ConjuredItem item) {
-        final int newSellIn = item.sellIn - 1;
-        return new ConjuredItem(item.name, newSellIn, recalculateQuality(newSellIn, item.quality));
+    public void handle(ConjuredItem conjuredItem) {
+        Item item = conjuredItem.getItem();
+        item.sellIn = item.sellIn - 1;
+        item.quality = recalculateQuality(item.sellIn, item.quality);
     }
 
     //should do twice as standard
