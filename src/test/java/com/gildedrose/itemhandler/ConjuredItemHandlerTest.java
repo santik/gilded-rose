@@ -13,7 +13,6 @@ public class ConjuredItemHandlerTest {
     private Faker faker = new Faker();
     private ConjuredItemHandler conjuredItemHandler = new ConjuredItemHandler();
 
-
     @Test
     public void handle_withConjured_shouldDecreaseSelInnAndQuality() {
         //arrange

@@ -12,7 +12,6 @@ public class AgedBrieHandlerTest {
     private Faker faker = new Faker();
     private AgedBrieHandler handler = new AgedBrieHandler();
 
-
     @Test
     public void handle_shoutIncreaseQualityAndSellIn() {
         //arrange

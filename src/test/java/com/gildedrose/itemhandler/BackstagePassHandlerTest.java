@@ -12,7 +12,6 @@ public class BackstagePassHandlerTest {
     private Faker faker = new Faker();
     private BackstagePassHandler backstagePassHandler = new BackstagePassHandler();
 
-
     @Test
     public void handle_withBackstagePassAndSellInnAbove10_shouldIncreaseQuality() {
         //arrange
