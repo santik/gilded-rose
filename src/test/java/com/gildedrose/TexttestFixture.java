@@ -16,7 +16,7 @@ public class TexttestFixture {
                 // this conjured item does not work properly yet
                 new Item("Conjured Mana Cake", 3, 6) };
 
-        GildedRoseDeprecated app = new GildedRoseDeprecated(items);
+        GildedRoseUpdater app = new GildedRose(items);
 
         int days = 2;
         if (args.length > 0) {

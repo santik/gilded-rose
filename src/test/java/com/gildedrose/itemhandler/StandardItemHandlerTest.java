@@ -2,6 +2,7 @@ package com.gildedrose.itemhandler;
 
 import com.gildedrose.GildedRoseUpdater;
 import com.gildedrose.Item;
+import com.gildedrose.typeditems.StandardItem;
 import com.github.javafaker.Faker;
 import org.junit.Test;
 
@@ -11,6 +12,7 @@ import static org.junit.Assert.assertEquals;
 public class StandardItemHandlerTest {
 
     private Faker faker = new Faker();
+    private StandardItemHandler handler = new StandardItemHandler();
 
     @Test
     public void handle_withStandardItem_shouldDecreaseSelInnAndQuality() {
@@ -19,15 +21,16 @@ public class StandardItemHandlerTest {
         int originalSellIn = faker.number().numberBetween(1, 100);
         int originalQuality = faker.number().numberBetween(1, 50);
         Item item = new Item(standardName, originalSellIn, originalQuality);
-        StandardItemHandler handler = new StandardItemHandler();
+        StandardItem standardItem = new StandardItem(item);
+
 
         //act
-        Item handledItem = handler.handle(item);
+        handler.handle(standardItem);
 
         //assert
-        assertEquals(standardName, handledItem.name);
-        assertEquals(originalSellIn - 1, handledItem.sellIn);
-        assertEquals(originalQuality - QUALITY_AMOUNT_TO_DECREASE, handledItem.quality);
+        assertEquals(standardName, item.name);
+        assertEquals(originalSellIn - 1, item.sellIn);
+        assertEquals(originalQuality - QUALITY_AMOUNT_TO_DECREASE, item.quality);
     }
 
     @Test
@@ -37,15 +40,16 @@ public class StandardItemHandlerTest {
         int originalSellIn = -1;
         int originalQuality = faker.number().numberBetween(1, 50);
         Item item = new Item(standardName, originalSellIn, originalQuality);
-        StandardItemHandler handler = new StandardItemHandler();
+        StandardItem standardItem = new StandardItem(item);
+
 
         //act
-        Item handledItem = handler.handle(item);
+        handler.handle(standardItem);
 
         //assert
-        assertEquals(standardName, handledItem.name);
-        assertEquals(originalSellIn - 1, handledItem.sellIn);
-        assertEquals(originalQuality - QUALITY_AMOUNT_TO_DECREASE * 2, handledItem.quality);
+        assertEquals(standardName, item.name);
+        assertEquals(originalSellIn - 1, item.sellIn);
+        assertEquals(originalQuality - QUALITY_AMOUNT_TO_DECREASE * 2, item.quality);
     }
 
     @Test
@@ -55,14 +59,15 @@ public class StandardItemHandlerTest {
         int originalSellIn = -2;
         int originalQuality = 0;
         Item item = new Item(standardName, originalSellIn, originalQuality);
-        StandardItemHandler handler = new StandardItemHandler();
+        StandardItem standardItem = new StandardItem(item);
+
 
         //act
-        Item handledItem = handler.handle(item);
+        handler.handle(standardItem);
 
         //assert
-        assertEquals(standardName, handledItem.name);
-        assertEquals(originalSellIn - 1, handledItem.sellIn);
-        assertEquals(originalQuality, handledItem.quality);
+        assertEquals(standardName, item.name);
+        assertEquals(originalSellIn - 1, item.sellIn);
+        assertEquals(originalQuality, item.quality);
     }
 }

@@ -1,6 +1,7 @@
 package com.gildedrose.itemhandler;
 
-import com.gildedrose.items.ConjuredItem;
+import com.gildedrose.Item;
+import com.gildedrose.typeditems.ConjuredItem;
 import com.github.javafaker.Faker;
 import org.junit.Test;
 
@@ -10,6 +11,8 @@ import static org.junit.Assert.assertEquals;
 public class ConjuredItemHandlerTest {
 
     private Faker faker = new Faker();
+    private ConjuredItemHandler conjuredItemHandler = new ConjuredItemHandler();
+
 
     @Test
     public void handle_withConjured_shouldDecreaseSelInnAndQuality() {
@@ -17,16 +20,16 @@ public class ConjuredItemHandlerTest {
         String conjuredName = faker.commerce().productName();
         int originalSellIn = faker.number().numberBetween(1, 100);
         int originalQuality = faker.number().numberBetween(1, 50);
-        ConjuredItem conjuredItem = new ConjuredItem(conjuredName, originalSellIn, originalQuality);
-        ConjuredItemHandler conjuredItemHandler = new ConjuredItemHandler();
+        Item item = new Item(conjuredName, originalSellIn, originalQuality);
+        ConjuredItem conjuredItem = new ConjuredItem(item);
 
         //act
-        ConjuredItem conjuredItemHandled = conjuredItemHandler.handle(conjuredItem);
+        conjuredItemHandler.handle(conjuredItem);
 
         //assert
-        assertEquals(conjuredName, conjuredItemHandled.name);
-        assertEquals(originalSellIn - 1, conjuredItemHandled.sellIn);
-        assertEquals(originalQuality - QUALITY_AMOUNT_TO_DECREASE * 2, conjuredItemHandled.quality);
+        assertEquals(conjuredName, item.name);
+        assertEquals(originalSellIn - 1, item.sellIn);
+        assertEquals(originalQuality - QUALITY_AMOUNT_TO_DECREASE * 2, item.quality);
     }
 
     @Test
@@ -35,15 +38,15 @@ public class ConjuredItemHandlerTest {
         String conjuredName = faker.commerce().productName();
         int originalSellIn = -1;
         int originalQuality = faker.number().numberBetween(1, 50);
-        ConjuredItem conjuredItem = new ConjuredItem(conjuredName, originalSellIn, originalQuality);
-        ConjuredItemHandler conjuredItemHandler = new ConjuredItemHandler();
+        Item item = new Item(conjuredName, originalSellIn, originalQuality);
+        ConjuredItem conjuredItem = new ConjuredItem(item);
 
         //act
-        ConjuredItem conjuredItemHandled = conjuredItemHandler.handle(conjuredItem);
+        conjuredItemHandler.handle(conjuredItem);
 
         //assert
-        assertEquals(conjuredName, conjuredItemHandled.name);
-        assertEquals(originalSellIn - 1, conjuredItemHandled.sellIn);
-        assertEquals(originalQuality - QUALITY_AMOUNT_TO_DECREASE * 4, conjuredItemHandled.quality);
+        assertEquals(conjuredName, item.name);
+        assertEquals(originalSellIn - 1, item.sellIn);
+        assertEquals(originalQuality - QUALITY_AMOUNT_TO_DECREASE * 4, item.quality);
     }
 }

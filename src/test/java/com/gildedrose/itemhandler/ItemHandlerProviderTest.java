@@ -1,28 +1,24 @@
 package com.gildedrose.itemhandler;
 
 import com.gildedrose.Item;
-import com.gildedrose.items.AgedBrie;
-import com.gildedrose.items.BackstagePass;
-import com.gildedrose.items.ConjuredItem;
-import com.gildedrose.items.LegendaryItem;
-import org.junit.Before;
+import com.gildedrose.typeditems.AgedBrie;
+import com.gildedrose.typeditems.BackstagePass;
+import com.gildedrose.typeditems.ConjuredItem;
+import com.gildedrose.typeditems.LegendaryItem;
+import com.gildedrose.typeditems.StandardItem;
 import org.junit.Test;
 
 import static org.junit.Assert.assertTrue;
 
 public class ItemHandlerProviderTest {
 
-    private ItemHandlerProvider provider;
-
-    @Before
-    public void setUp() {
-        provider = new ItemHandlerProvider();
-    }
+    private TypedItemHandlerProvider provider = new TypedItemHandlerProvider();
+    private Item item = new Item("somename", 1, 1);
 
     @Test
     public void provide_withAgedBrie_shouldReturnAgedBrieHandler() {
         //arrange
-        AgedBrie agedBrie = new AgedBrie(1,1);
+        AgedBrie agedBrie = new AgedBrie(item);
 
         //act && assert
         assertTrue(provider.provide(agedBrie) instanceof AgedBrieHandler);
@@ -31,7 +27,7 @@ public class ItemHandlerProviderTest {
     @Test
     public void provide_withBackstagePass_shouldReturnBackstagePassHandler() {
         //arrange
-        BackstagePass backstagePass = new BackstagePass("name", 1,1);
+        BackstagePass backstagePass = new BackstagePass(item);
 
         //act && assert
         assertTrue(provider.provide(backstagePass) instanceof BackstagePassHandler);
@@ -40,7 +36,7 @@ public class ItemHandlerProviderTest {
     @Test
     public void provide_withLegendaryItem_shouldReturnLegendaryItemHandler() {
         //arrange
-        LegendaryItem legendaryItem = new LegendaryItem("name", 1,1);
+        LegendaryItem legendaryItem = new LegendaryItem(item);
 
         //act && assert
         assertTrue(provider.provide(legendaryItem) instanceof LegendaryItemHandler);
@@ -49,7 +45,7 @@ public class ItemHandlerProviderTest {
     @Test
     public void provide_withConjuredItem_shouldReturnConjuredItemHandler() {
         //arrange
-        ConjuredItem conjuredItem = new ConjuredItem("name", 1,1);
+        ConjuredItem conjuredItem = new ConjuredItem(item);
 
         //act && assert
         assertTrue(provider.provide(conjuredItem) instanceof ConjuredItemHandler);
@@ -58,9 +54,9 @@ public class ItemHandlerProviderTest {
     @Test
     public void provide_withStandardItem_shouldReturnStandardItemHandler() {
         //arrange
-        Item item = new Item("name", 1,1);
+        StandardItem standardItem = new StandardItem(item);
 
         //act && assert
-        assertTrue(provider.provide(item) instanceof StandardItemHandler);
+        assertTrue(provider.provide(standardItem) instanceof StandardItemHandler);
     }
 }
