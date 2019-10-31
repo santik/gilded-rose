@@ -11,7 +11,7 @@ public class GildedRoseTest {
     private Faker faker = new Faker();
 
     private GildedRoseUpdater getApp(Item[] items) {
-        return new GildedRoseDeprecated(items);
+        return new GildedRose(items);
     }
 
     @Test
