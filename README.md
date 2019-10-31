@@ -3,9 +3,9 @@
 
 The biggest challenge of this assignment was the requirement not to change `Items`.
 It limits possibilities for decoupling code, but requirements are requirements.
-_I personally think that items should not be muttable. Aged cheese today is not the same as tomorrow._  
 
-The approach is the following:
+_I personally think that items should be immuttable. Aged cheese today is not the same as tomorrow._  
+
 For each `Item` in the list application performs the squence of operations:
 * Decorate `Item` into `TypedItem` object based on its name with the `TypedItemFactory`
     * _For example item with the name "Aged Brie" should be `AgedBrie`_
