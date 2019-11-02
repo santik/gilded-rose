@@ -17,7 +17,7 @@ class GildedRose extends GildedRoseUpdater {
             try {
                 itemHandler.handle(item);
             } catch (ValidationException e) {
-                e.printStackTrace(); //should be log
+                e.printStackTrace();
             }
         }
     }
