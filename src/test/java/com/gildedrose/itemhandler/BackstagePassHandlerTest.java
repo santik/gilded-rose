@@ -2,6 +2,7 @@ package com.gildedrose.itemhandler;
 
 import com.gildedrose.Item;
 import com.gildedrose.typeditems.BackstagePass;
+import com.gildedrose.typeditems.ValidationException;
 import com.github.javafaker.Faker;
 import org.junit.Test;
 
@@ -13,7 +14,7 @@ public class BackstagePassHandlerTest {
     private BackstagePassHandler backstagePassHandler = new BackstagePassHandler();
 
     @Test
-    public void handle_withBackstagePassAndSellInnAbove10_shouldIncreaseQuality() {
+    public void handle_withBackstagePassAndSellInnAbove10_shouldIncreaseQuality() throws ValidationException {
         //arrange
         String backstagePassName = faker.commerce().productName();
         int originalSellIn = faker.number().numberBetween(11, 100);
@@ -31,7 +32,7 @@ public class BackstagePassHandlerTest {
     }
 
     @Test
-    public void handle_withBackstagePassAndSellInnBelow10_shouldIncreaseQualityBy2() {
+    public void handle_withBackstagePassAndSellInnBelow10_shouldIncreaseQualityBy2() throws ValidationException {
         //arrange
         String backstagePassName = faker.commerce().productName();
         int originalSellIn = faker.number().numberBetween(6, 9);
@@ -49,7 +50,7 @@ public class BackstagePassHandlerTest {
     }
 
     @Test
-    public void withBackstagePassAndSellInnBelow5_shouldIncreaseQualityBy3() {
+    public void withBackstagePassAndSellInnBelow5_shouldIncreaseQualityBy3() throws ValidationException {
         //arrange
         String backstagePassName = faker.commerce().productName();
         int originalSellIn = faker.number().numberBetween(1, 4);
@@ -67,7 +68,7 @@ public class BackstagePassHandlerTest {
     }
 
     @Test
-    public void handle_withBackstagePassAndSellingBelow0_shouldKeepQuality0() {
+    public void handle_withBackstagePassAndSellingBelow0_shouldKeepQuality0() throws ValidationException {
         //arrange
         String backstagePassName = faker.commerce().productName();
         int originalSellIn = 0;

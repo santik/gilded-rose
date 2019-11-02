@@ -2,6 +2,7 @@ package com.gildedrose.itemhandler;
 
 import com.gildedrose.Item;
 import com.gildedrose.typeditems.ConjuredItem;
+import com.gildedrose.typeditems.ValidationException;
 import com.github.javafaker.Faker;
 import org.junit.Test;
 
@@ -14,7 +15,7 @@ public class ConjuredItemHandlerTest {
     private ConjuredItemHandler conjuredItemHandler = new ConjuredItemHandler();
 
     @Test
-    public void handle_withConjured_shouldDecreaseSelInnAndQuality() {
+    public void handle_withConjured_shouldDecreaseSelInnAndQuality() throws ValidationException {
         //arrange
         String conjuredName = faker.commerce().productName();
         int originalSellIn = faker.number().numberBetween(1, 100);
@@ -32,7 +33,7 @@ public class ConjuredItemHandlerTest {
     }
 
     @Test
-    public void withConjuredItem_ShouldDecreaseQualityByTwoWhenSellInPassed() {
+    public void withConjuredItem_ShouldDecreaseQualityByTwoWhenSellInPassed() throws ValidationException {
         //arrange
         String conjuredName = faker.commerce().productName();
         int originalSellIn = -1;

@@ -3,7 +3,7 @@ package com.gildedrose.typeditems;
 import com.gildedrose.Item;
 
 public class BackstagePass extends TypedItem {
-    public BackstagePass(Item item) {
+    public BackstagePass(Item item) throws ValidationException {
         super(item);
     }
 }

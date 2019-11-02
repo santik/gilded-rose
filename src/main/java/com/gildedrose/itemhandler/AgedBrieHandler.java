@@ -3,9 +3,9 @@ package com.gildedrose.itemhandler;
 import com.gildedrose.Item;
 import com.gildedrose.typeditems.AgedBrie;
 
-public class AgedBrieHandler implements TypedItemHandler<AgedBrie> {
+import static com.gildedrose.typeditems.AgedBrie.MAX_QUALITY;
 
-    private static final int MAX_QUALITY = 50;
+public class AgedBrieHandler implements TypedItemHandler<AgedBrie> {
 
     @Override
     public void handle(AgedBrie agedBrie) {

@@ -1,6 +1,7 @@
 package com.gildedrose;
 
 import com.gildedrose.itemhandler.ItemHandler;
+import com.gildedrose.typeditems.ValidationException;
 
 class GildedRose extends GildedRoseUpdater {
 
@@ -13,7 +14,11 @@ class GildedRose extends GildedRoseUpdater {
     @Override
     public void updateQuality() {
         for (Item item: items) {
-            itemHandler.handle(item);
+            try {
+                itemHandler.handle(item);
+            } catch (ValidationException e) {
+                e.printStackTrace(); //should be log
+            }
         }
     }
 }

@@ -3,9 +3,9 @@ package com.gildedrose.itemhandler;
 import com.gildedrose.Item;
 import com.gildedrose.typeditems.BackstagePass;
 
-public class BackstagePassHandler implements TypedItemHandler<BackstagePass> {
+import static com.gildedrose.typeditems.BackstagePass.MAX_QUALITY;
 
-    private static final int MAX_QUALITY = 50;
+public class BackstagePassHandler implements TypedItemHandler<BackstagePass> {
 
     @Override
     public void handle(BackstagePass backstagePass) {

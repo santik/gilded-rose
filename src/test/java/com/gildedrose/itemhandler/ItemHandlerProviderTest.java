@@ -6,6 +6,7 @@ import com.gildedrose.typeditems.BackstagePass;
 import com.gildedrose.typeditems.ConjuredItem;
 import com.gildedrose.typeditems.LegendaryItem;
 import com.gildedrose.typeditems.StandardItem;
+import com.gildedrose.typeditems.ValidationException;
 import org.junit.Test;
 
 import static org.junit.Assert.assertTrue;
@@ -16,7 +17,7 @@ public class ItemHandlerProviderTest {
     private Item item = new Item("somename", 1, 1);
 
     @Test
-    public void provide_withAgedBrie_shouldReturnAgedBrieHandler() {
+    public void provide_withAgedBrie_shouldReturnAgedBrieHandler() throws ValidationException {
         //arrange
         AgedBrie agedBrie = new AgedBrie(item);
 
@@ -25,7 +26,7 @@ public class ItemHandlerProviderTest {
     }
 
     @Test
-    public void provide_withBackstagePass_shouldReturnBackstagePassHandler() {
+    public void provide_withBackstagePass_shouldReturnBackstagePassHandler() throws ValidationException {
         //arrange
         BackstagePass backstagePass = new BackstagePass(item);
 
@@ -34,16 +35,17 @@ public class ItemHandlerProviderTest {
     }
 
     @Test
-    public void provide_withLegendaryItem_shouldReturnLegendaryItemHandler() {
+    public void provide_withLegendaryItem_shouldReturnLegendaryItemHandler() throws ValidationException {
         //arrange
-        LegendaryItem legendaryItem = new LegendaryItem(item);
+        Item sufuras = new Item("sufuras", 1, 80);
+        LegendaryItem legendaryItem = new LegendaryItem(sufuras);
 
         //act && assert
         assertTrue(provider.provide(legendaryItem) instanceof LegendaryItemHandler);
     }
 
     @Test
-    public void provide_withConjuredItem_shouldReturnConjuredItemHandler() {
+    public void provide_withConjuredItem_shouldReturnConjuredItemHandler() throws ValidationException {
         //arrange
         ConjuredItem conjuredItem = new ConjuredItem(item);
 
@@ -52,7 +54,7 @@ public class ItemHandlerProviderTest {
     }
 
     @Test
-    public void provide_withStandardItem_shouldReturnStandardItemHandler() {
+    public void provide_withStandardItem_shouldReturnStandardItemHandler() throws ValidationException {
         //arrange
         StandardItem standardItem = new StandardItem(item);
 

@@ -1,8 +1,8 @@
 package com.gildedrose.itemhandler;
 
-import com.gildedrose.GildedRoseUpdater;
 import com.gildedrose.Item;
 import com.gildedrose.typeditems.StandardItem;
+import com.gildedrose.typeditems.ValidationException;
 import com.github.javafaker.Faker;
 import org.junit.Test;
 
@@ -15,7 +15,7 @@ public class StandardItemHandlerTest {
     private StandardItemHandler handler = new StandardItemHandler();
 
     @Test
-    public void handle_withStandardItem_shouldDecreaseSelInnAndQuality() {
+    public void handle_withStandardItem_shouldDecreaseSelInnAndQuality() throws ValidationException {
         //arrange
         String standardName = faker.commerce().productName();
         int originalSellIn = faker.number().numberBetween(1, 100);
@@ -34,7 +34,7 @@ public class StandardItemHandlerTest {
     }
 
     @Test
-    public void withStandardItem_ShouldDecreaseQualityByTwoWhenSellInPassed() {
+    public void withStandardItem_ShouldDecreaseQualityByTwoWhenSellInPassed() throws ValidationException {
         //arrange
         String standardName = faker.commerce().productName();
         int originalSellIn = -1;
@@ -53,7 +53,7 @@ public class StandardItemHandlerTest {
     }
 
     @Test
-    public void withStandardItem_shouldNotMakeQualityNegative() {
+    public void withStandardItem_shouldNotMakeQualityNegative() throws ValidationException {
         //arrange
         String standardName = faker.commerce().productName();
         int originalSellIn = -2;

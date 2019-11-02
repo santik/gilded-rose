@@ -25,7 +25,7 @@ public class TypedItemFactory {
         return item.name.startsWith(CONJURED_PREFIX);
     }
 
-    public static TypedItem getTypedItem(Item item) {
+    public static TypedItem getTypedItem(Item item) throws ValidationException {
         if (isAgedBrie(item)) {
             return new AgedBrie(item);
         }

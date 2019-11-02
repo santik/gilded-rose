@@ -3,11 +3,11 @@ package com.gildedrose.itemhandler;
 import com.gildedrose.Item;
 import com.gildedrose.typeditems.StandardItem;
 
+import static com.gildedrose.typeditems.StandardItem.MIN_QUALITY;
+
 public class StandardItemHandler implements TypedItemHandler<StandardItem> {
 
     public static final int QUALITY_AMOUNT_TO_DECREASE = 1;
-
-    private static final int MIN_QUALITY = 0;
 
     @Override
     public void handle(StandardItem standardItem) {

@@ -2,6 +2,7 @@ package com.gildedrose.itemhandler;
 
 import com.gildedrose.Item;
 import com.gildedrose.typeditems.AgedBrie;
+import com.gildedrose.typeditems.ValidationException;
 import com.github.javafaker.Faker;
 import org.junit.Test;
 
@@ -13,7 +14,7 @@ public class AgedBrieHandlerTest {
     private AgedBrieHandler handler = new AgedBrieHandler();
 
     @Test
-    public void handle_shoutIncreaseQualityAndSellIn() {
+    public void handle_shoutIncreaseQualityAndSellIn() throws ValidationException {
         //arrange
         int originalSellIn = faker.number().numberBetween(1, 100);
         int originalQuality = faker.number().numberBetween(1, 30);
@@ -31,7 +32,7 @@ public class AgedBrieHandlerTest {
     }
 
     @Test
-    public void withOutdatedAgedBrie_shouldIncreaseQuality() {
+    public void withOutdatedAgedBrie_shouldIncreaseQuality() throws ValidationException {
         //arrange
         int originalSellIn = -1;
         int originalQuality = faker.number().numberBetween(1, 30);
@@ -49,7 +50,7 @@ public class AgedBrieHandlerTest {
     }
 
     @Test
-    public void withAgedBrie_shouldKeepQualityBelow50() {
+    public void withAgedBrie_shouldKeepQualityBelow50() throws ValidationException {
         //arrange
         int originalSellIn = faker.number().numberBetween(1, 100);
         int originalQuality = 50;
