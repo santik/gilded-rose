@@ -20,7 +20,7 @@ public abstract class TypedItem {
 
     protected void validate(Item item) throws ValidationException {
         if (item.quality > MAX_QUALITY || item.quality < MIN_QUALITY) {
-            throw new ValidationException("Quality is illegal for item " + item);
+            throw new ValidationException("Quality is invalid for the item " + item);
         }
     }
 }

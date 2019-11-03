@@ -13,7 +13,7 @@ public class LegendaryItem extends TypedItem {
     @Override
     protected void validate(Item item) throws ValidationException {
         if (item.quality != QUALITY) {
-            throw new ValidationException("Quality is illegal for item " + item);
+            throw new ValidationException("Quality is invalid for the item " + item);
         }
     }
 }
