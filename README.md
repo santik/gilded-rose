@@ -9,5 +9,5 @@ For each `Item` in the list application performs the sequence of operations:
     * _For example for `BackstagePass` it should be `BackstagePassHandler`_
 * Handler keeps knowledge how to update properties of wrapped `Item`
   
-Initial `GildedRose` class was renamed to `GildedRoseDeprecated` with little changes to be able to change versions to inside tests.
+Initial `GildedRose` class was renamed to `GildedRoseDeprecated` with little changes to be able to change versions inside tests.
 
